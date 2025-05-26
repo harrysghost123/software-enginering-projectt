@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QOLUP - Events</title>
+    <link rel="stylesheet" href="C:\Users\User\software-enginering-projectt\code\xar-code\frontend_testing\for liveevents.css">
+    <script src="C:\Users\User\software-enginering-projectt\code\xar-code\frontend_testing\liveevents.js"></script>
+</head>
+<body>
+    
+    <header>
+        <div class="header-left">
+            <span class="menu-icon">&#9776;</span>
+        </div>
+        <div class="header-center">QOLUP</div>
+        <div class="header-right">
+            <img src="C:\Users\User\software-enginering-projectt\code\xar-code\frontend_testing\resources\QULOP.jpg" alt="Profile" class="profile-pic">
+        </div>
+    </header>
+
+    <nav class="tabs">
+        <button class="tab-button" data-category="NEWS">NEWS</button>
+        <button class="tab-button" data-category="COFFEE/BAR">COFFEE/BAR</button>
+        <button class="tab-button" data-category="EVENTS">EVENTS</button>
+        <button class="tab-button" data-category="UNI INFO">UNI INFO</button>
+    </nav>
+<h2>UNISTUDENT EVENTS</h2>
+    <main class="content">
+        
+
+        <div class="filter-section">
+            <input type="text" id="keywords" placeholder="Search keywords...">
+            <select id="categoryFilter">
+                <option value="">All Categories</option>
+                <option value="Music">Music</option>
+                <option value="Sports">Sports</option>
+                <option value="Education">Education</option>
+                <option value="Social">Social</option>
+            </select>
+            <input type="date" id="dateFilter">
+            <button id="applyFilters">Apply Filters</button>
+        </div>
+
+        <div id="eventList" class="event-list">
+            <p>Loading events...</p>
+        </div>
+    </main>
+
+    <footer class="bottom-nav">
+        <a href="" class="nav-item"><img src="search_icon" alt="Search"></a>
+        <a href="" class="nav-item active"><img src="home_icon" alt="Home"></a>
+        <a href="" class="nav-item"><img src="notifications_icon" alt="Notifications"></a>
+    </footer>
+
+   
+</body>
+</html>
