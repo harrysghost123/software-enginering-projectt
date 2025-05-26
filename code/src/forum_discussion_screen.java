@@ -1,6 +1,6 @@
 public class forum_discussion_screen {
 
-    public void loadDiscussion(){
+    public void loadDiscussion(discussion disc){
         //code for loading selected discussion
     }
 

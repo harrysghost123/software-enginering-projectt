@@ -1,14 +1,17 @@
 import java.util.List;
 
 public class forum_database_manager {
+    private List results;
+    private discussion disc;
 
     public List fetchDiscussionsList(){
         //code for fetching discussions list
         return results;
     }
 
-    public void fetchDiscussion(){
+    public discussion fetchDiscussion(){
         //code for fetching a discussion
+        return disc;
     }
 
     public void saveComment(){
