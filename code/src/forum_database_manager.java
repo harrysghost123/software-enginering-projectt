@@ -4,6 +4,8 @@ public class forum_database_manager {
     private List results;
     private discussion disc;
 
+    public forum_database_manager(){this.disc = new discussion(disc.title,disc.main_body);}
+
     public List fetchDiscussionsList(){
         //code for fetching discussions list
         return results;
@@ -14,12 +16,15 @@ public class forum_database_manager {
         return disc;
     }
 
-    public void saveComment(){
+    public void saveComment(int origin){
         //code for saving comments
+        forum_manager_class manager = new forum_manager_class();
+        manager.chosenDiscussion(origin);
     }
 
-    public void fetchSearchedDiscussions(){
+    public List fetchSearchedDiscussions(){
         //code for fetching discussions that have been searched
+        return results;
     }
 
     public void saveTextDiscussion(){
