@@ -1,6 +1,7 @@
 import java.util.List;
 
 public class forum_manager_class {
+    private List<discussion> discussions;
     private forum_database_manager dbManager;
 
     public forum_manager_class(){this.dbManager = new forum_database_manager();}
@@ -8,8 +9,8 @@ public class forum_manager_class {
     public void searchDiscussions(){
         //code for searching for discussions
         main_forum_screen mainScreen = new main_forum_screen();
-        List results = dbManager.fetchDiscussionsList();
-        mainScreen.loadDiscussionsList(results);
+        discussions = dbManager.fetchDiscussionsList();
+        mainScreen.loadDiscussionsList(discussions);
     }
 
     public void chosenDiscussion(int origin){

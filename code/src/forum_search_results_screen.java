@@ -5,7 +5,7 @@ public class forum_search_results_screen {
     private forum_manager_class manager;
     private forum_temp_storage tempStorage;
 
-    public void loadSearchedDiscussions(List Discussions){
+    public void loadSearchedDiscussions(List<discussion> Discussions){
         //code for loading discussions after searching
         System.out.println(Discussions);//print the discussions in the screen
     }

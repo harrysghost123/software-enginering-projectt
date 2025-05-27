@@ -1,7 +1,7 @@
 import java.util.List;
 
 public class main_forum_screen {
-    private List<discussion> discussions;
+    //private List<discussion> discussions;
     private forum_manager_class manager;
     private forum_temp_storage tempStorage;
 
@@ -10,7 +10,7 @@ public class main_forum_screen {
         this.tempStorage = new forum_temp_storage();
     }
 
-    public void loadDiscussionsList(List Discussions){
+    public void loadDiscussionsList(List<discussion> Discussions){
         //code for loading the discussions on the main screen
         System.out.println(Discussions);//print the discussions in the main screen
     }
