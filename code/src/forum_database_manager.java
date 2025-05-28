@@ -4,7 +4,7 @@ public class forum_database_manager {
     private List<discussion> results;
     private discussion disc;
     private forum_manager_class manager;
-    library_manager libraryManager;
+    private library_manager libraryManager;
 
     public forum_database_manager(){
         this.disc = new discussion(disc.title,disc.main_body);

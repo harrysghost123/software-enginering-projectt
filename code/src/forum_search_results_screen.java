@@ -1,7 +1,7 @@
 import java.util.List;
 
 public class forum_search_results_screen {
-    private List<discussion> discussions;
+    //private List<discussion> discussions;
     private forum_manager_class manager;
     private forum_temp_storage tempStorage;
 
