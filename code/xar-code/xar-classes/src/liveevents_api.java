@@ -1,7 +1,7 @@
 import java.util.List;
 
 public class liveevents_api {
-    public void findLiveevents(String ids) {
+    public  findLiveevents(String ids) {
 
         //for all Events
         return results;

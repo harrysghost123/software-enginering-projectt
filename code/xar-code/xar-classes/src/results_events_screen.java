@@ -1,6 +1,6 @@
 public class results_events_screen {
 private  String selectedEventid;
-    public void displayresults(List results) {
+    public  displayresults(List <events>) {
 
         // show the results of search
         return selectedEventid;

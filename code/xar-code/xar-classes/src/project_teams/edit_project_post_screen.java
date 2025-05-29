@@ -30,7 +30,7 @@ public class edit_project_post_screen {
         String contentInput = scanner.nextLine();
         this.newContent = contentInput.isEmpty() ? post.getContent() : contentInput;
     }
-    public void editpost1(edit_project_post_screen    screen, Post post) {
+    public void editpost1(edit_project_post_screen screen, Post post) {
         //useredits the post
         System.out.println("User: Editing post: " + post.getTitle());
         screen.display(post);
@@ -53,7 +53,7 @@ public class edit_project_post_screen {
         screen.display(message);
         return screen.userconfirmation();
     }
-    public void deletePost(Post postToDelete) {
+    public void selectdelete(Post postToDelete) {
         // users selcts to delte a project of his
         System.out.println("PersonalProjectPostsScreen: Confirming delete for " + postToDelete.getTitle());
         // This would typically involve an ApprovalScreen
