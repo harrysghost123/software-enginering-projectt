@@ -10,7 +10,7 @@ public class project_finder_screen {
     private List<manage_projects> subjects;
     private List<Post> displayedPosts;
     private manage_projects manageProject;
-
+    private create_project_screen createProjectScreen;
     public project_finder_screen(manage_projects manageProject) {
         this.manageProject = manageProject;
         this.displayedPosts = new ArrayList<>();
@@ -60,9 +60,27 @@ public class project_finder_screen {
         public void searchprojects (String search){
             //user wants to see the pproojects oof this subject
         }
-        public Post selectYourPost (ProjectFinderScreen screen){
+        /*public Post selectYourPost (ProjectFinderScreen screen){
             System.out.println("User: Selecting a post from Project Finder Screen.");
             return screen.selectYourPost();
-        }
+        }*/
+    public boolean selectcreateaproject() {
+        System.out.println("project_finder_screen: User chose 'Create a Project'.");
+        // Creates and shows the creation screen
+        this.createProjectScreen = new create_project_screen(manageProject);
+        createProjectScreen.showcreate();
+        return true; // Indicates navigation
     }
-}
+
+    public void returntostartscreen() {
+        System.out.println("project_finder_screen: Επιστροφή στην αρχική οθόνη της εφαρμογής.");
+        //  clear current view and show initial screen
+    }
+
+
+
+
+    }
+
+
+

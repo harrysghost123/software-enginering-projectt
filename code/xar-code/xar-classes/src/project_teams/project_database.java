@@ -2,10 +2,9 @@ package project_teams;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
+
 public class project_database {
     public findallsubjproj(String subjects) {
         //find all the subj with projects
@@ -32,9 +31,9 @@ public class project_database {
     public project_database() {
         this.posts = new ArrayList<>();
         // Add some dummy data
-        posts.add(new Post("post1", "My First Project", "This is content for my first project.", "user1", new Date(), "published"));
-        posts.add(new Post("post2", "Another Great Idea", "Details about my second project idea.", "user1", new Date(),  "draft"));
-        posts.add(new Post("post3", "Team Project Alpha", "A collaborative project with team members.", "user2", new Date(),  "pending approval"));
+        posts.add(new Post("post1", "My First Project", "This is content for my first project.", "user1","web", new Date(), "published"));
+        posts.add(new Post("post2", "Another Great Idea", "Details about my second project idea.", "user1","web", new Date(),  "draft"));
+        posts.add(new Post("post3", "Team Project Alpha", "A collaborative project with team members.", "user2", "web",new Date(),  "pending approval"));
     }
 
     public List<Post> findposts(String query) {
@@ -73,4 +72,51 @@ public class project_database {
         }
         return removed;
     }
+    // Checks if an post from the same owner for the same category already exists
+    public boolean ifalreadyexists(Map<String, String> postData) {
+        System.out.println("project_database: Ελέγχω αν υπάρχει ήδη ");
+        String ownerId = postData.get(" AuthorId");
+        String category = postData.get("category");
+
+        for (Post p : posts) {
+            if (p.getAuthorId().equals(ownerId) && p.getCategory().equals(category)) {
+                System.out.println("project_database: Found existing post for " + authorId + " in " + category);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean upload(Map<String, String> postData) {
+        System.out.println("project_database: Ανεβάζω την αγγελία (upload)");
+        String newPostId = "post" + String.format("%03d", nextpostId++);
+        Post newPost = new Post(
+                newPostId,
+                postData.get("title"),
+                postData.get("content"),
+                postData.get("authorId"),
+                postData.get("category"),
+                new Date(),
+                postData.get("status")
+        );
+        posts.add(newPost); // Renamed list
+        System.out.println("project_database: Successfully uploaded post: " + newPost.getTitle());
+        return true;
+    }
+
+    public List<Post> findsubprojects(String query) { // search for subj with projects
+        System.out.println("project_database: Βρίσκω υπο-έργα  με query: " + query);
+        List<Post> results = new ArrayList<>();
+        for (Post p : posts) { // Renamed list
+
+            if (p.getAuthorId().equals(query) || p.getContent().toLowerCase().contains(query.toLowerCase())) {
+                results.add(p);
+            }
+        }
+        return results;
+    }
 }
+
+
+
+

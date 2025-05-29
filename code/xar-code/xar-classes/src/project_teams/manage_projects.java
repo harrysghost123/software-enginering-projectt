@@ -59,6 +59,47 @@ public class manage_projects {
         // Business logic before deletion
         return projectDatabase.deletepost(post);
     }
+
+
+    private upload_succes_project_screen uploadSuccessScreen; // Dependency
+    private duplicate_project_error_screen duplicateErrorScreen; // Dependency
+
+    public manage_projects(project_database projectDatabase, upload_succes_project_screen uploadSuccessScreen, duplicate_project_error_screen duplicateErrorScreen) {
+        this.projectDatabase = projectDatabase;
+        this.uploadSuccessScreen = uploadSuccessScreen;
+        this.duplicateErrorScreen = duplicateErrorScreen;
+    }
+    public boolean searchforuploaded(Map<String, String> projectData) {
+        System.out.println("manage_projects: Αναλαμβάνω την αγγελία ");
+
+        //  Check for duplicates
+        System.out.println("manage_projects: Ψάχνω για υπάρχουσες ανεβασμένες αγγελίες ");
+        if (projectDatabase.ifalreadyexists(projectData)) { // Condition 'alreadyllexist'
+            System.out.println("manage_projects: Υπάρχει ήδη αγγελία από τον ίδιο φοιτητή για το συγκεκριμένο μάθημα.");
+            duplicateErrorScreen.display("Έχετε ήδη αναρτήσει αγγελία για αυτό το μάθημα.");
+            duplicateErrorScreen.showsite(); //display error screen
+            return false;
+        } else {
+            //  Upload if not existing
+            System.out.println("manage_projects: Ανεβάζω την αγγελία του φοιτητή στην βάση ");
+            if (projectDatabase.upload(projectData)) {
+                uploadSuccessScreen.display("Η αγγελία σας αναρτήθηκε.");
+                uploadSuccessScreen.showsite(); // Display success screen
+                return true;
+            } else {
+                // This case handles a generic upload failure, not a duplicate
+                System.out.println("manage_projects: Αποτυχία στην αναρτήση αγγελίας.");
+                // Potentially display a generic error screen or log
+                return false;
+            }
+        }
+    }
+
+    public List<Post> searchforproj(String query) {
+        System.out.println("manage_projects: Αναζητώ υπο-έργα ");
+        return projectDatabase.findsubprojects(query);
+    }
+
 }
 
 

@@ -12,14 +12,17 @@ import java.util.Scanner;
         private String title;
         private String content;
         private String authorId;
+        private String category;
         private Date creationDate;
         private String status;
 
-        public Post(String postId, String title, String content, String authorId, Date creationDate,  String status) {
+
+        public Post(String postId, String title, String content, String authorId,String category, Date creationDate,  String status) {
             this.postId = postId;
             this.title = title;
             this.content = content;
             this.authorId = authorId;
+            this.category = category;
             this.creationDate = creationDate;
             this.status = status;
         }
@@ -29,6 +32,7 @@ import java.util.Scanner;
         public String getTitle() { return title; }
         public String getContent() { return content; }
         public String getAuthorId() { return authorId; }
+        public String getCategory() { return category; }
         public Date getCreationDate() { return creationDate; }
         public String getStatus() { return status; }
 
