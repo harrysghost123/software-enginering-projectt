@@ -1,6 +1,12 @@
 package project_teams;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
 
 public class manage_projects {
     private String subjects;
@@ -31,5 +37,30 @@ public class manage_projects {
  public void returntoprojectscreen() {
         //retrun to projectfinder screen
  }
+    private project_database projectDatabase; // Composition
+
+    public manage_projects(project_database projectDatabase) {
+        this.projectDatabase = projectDatabase;
+    }
+
+    public List<Post> searchposts(String query) {
+        System.out.println("ManageProject: Searching database for posts with query: " + query);
+        return projectDatabase.findposts(query);
+    }
+
+    public boolean savechanges(Post post) {
+        System.out.println("ManageProject: Saving changes for post: " + post.getTitle());
+        // Here you might have business logic for validation before saving
+        return projectDatabase.savechangespost(post);
+    }
+
+    public static boolean deletepostfrom_db(Post post) {
+        System.out.println("ManageProject: Attempting to delete post: " + post.getTitle());
+        // Business logic before deletion
+        return projectDatabase.deletepost(post);
+    }
+}
+
+
 
 }
