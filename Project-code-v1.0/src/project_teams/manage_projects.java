@@ -12,6 +12,10 @@ public class manage_projects {
     private String subjects;
     private String details;
     private List projects;
+    private manage_projects dbManagerproj;
+
+    public manage_projects(){this.dbManagerproj = new manage_projects();}
+
     public void showallsubjects() {
 
         //show the user request all the subjects that have projects

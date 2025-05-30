@@ -1,3 +1,5 @@
+import project_teams.manage_projects;
+
 public class feature_selection_screen {
 
     public void loadForum() {
@@ -8,5 +10,7 @@ public class feature_selection_screen {
 
     public void loadProject() {
         //code to load the project finder
+        manage_projects projectManager = new manage_projects();
+        projectManager.showallsubjects();
     }
 }
