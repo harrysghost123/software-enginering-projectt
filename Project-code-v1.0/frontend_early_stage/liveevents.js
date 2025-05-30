@@ -5,12 +5,44 @@ document.addEventListener('DOMContentLoaded', () => {
     const dateFilter = document.getElementById('dateFilter');
     const applyFiltersButton = document.getElementById('applyFilters');
 
+    // Hamburger  elements
+    const menuIcon = document.getElementById('menuIcon');
+    const sideMenu = document.getElementById('sideMenu');
+    const overlay = document.getElementById('overlay');
+    const body = document.body;
+
+    //  to open the side menu
+    function openSideMenu() {
+        sideMenu.style.width = '250px'; 
+        overlay.style.width = '100%';
+        body.classList.add('menu-open');
+    }
+
+    //  to close the side menu
+    function closeSideMenu() {
+        sideMenu.style.width = '0';
+        overlay.style.width = '0';
+        body.classList.remove('menu-open');
+    }
+
+    //  for menu icon click
+    menuIcon.addEventListener('click', openSideMenu);
+
+    //  to close menu
+    overlay.addEventListener('click', closeSideMenu);
+
+    // Close menu if a  item is clicked 
+    document.querySelectorAll('.side-menu .menu-item').forEach(item => {
+        item.addEventListener('click', closeSideMenu);
+    });
+
+      // for loading the livents to our app with api
     async function fetchEvents(filters = {}) {
         eventList.innerHTML = '<p>Loading events...</p>'; 
 
         const queryParams = new URLSearchParams(filters).toString();
         
-        const apiUrl = `/api/events?${queryParams}`; 
+        const apiUrl = `?${queryParams}`; 
 
         try {
             const response = await fetch(apiUrl);
@@ -24,32 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
             eventList.innerHTML = '<p>Failed to load events. Please try again later.</p>';
         }
     }
-
-    function displayEvents(events) {
-        eventList.innerHTML = ''; // katharise proigoumena events
-
-        if (events.length === 0) {
-            eventList.innerHTML = '<p>No events found matching your criteria.</p>';
-            return;
-        }
-
-        events.forEach(event => {
-            const eventItem = document.createElement('div');
-            eventItem.classList.add('event-item');
-            eventItem.innerHTML = `
-                <h3>${event.title}</h3>
-                <div class="event-meta">
-                    ${event.time} - ${event.date}
-                </div>
-                <p>${event.description}</p>
-                <div class="event-actions">
-                    <a href="#">Σχολιάστε το άρθρο</a>
-                    <a href="#">Διαβάστε περισσότερα»</a>
-                </div>
-            `;
-            eventList.appendChild(eventItem);
-        });
-    }
+     
 
     // gia an mpoun filters filters
     applyFiltersButton.addEventListener('click', () => {
@@ -58,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
             category: categoryFilter.value,
             date: dateFilter.value 
         };
-        // katharizei kena filterafilters
+        // καθαρίζει κενά φίλτρα
         for (const key in filters) {
             if (!filters[key]) {
                 delete filters[key];
@@ -67,28 +74,28 @@ document.addEventListener('DOMContentLoaded', () => {
         fetchEvents(filters);
     });
 
-    // gia na kani load ta evewnts otan fortoni
+    // gia na kani load ta events otan φορτώνει
     fetchEvents();
 
-    // tab leitourgia
+    // tab λειτουργία
     document.querySelectorAll('.tab-button').forEach(button => {
         button.addEventListener('click', (e) => {
             document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
             e.target.classList.add('active');
-            //allazi se events
+            // αλλάζει σε events
             if (e.target.dataset.category === 'EVENTS') {
                 document.querySelector('.content h2').textContent = 'UNISTUDENT EVENTS';
-                document.querySelector('.filter-section').style.display = 'flex'; // dikse filtra gia events
-                fetchEvents(); //  ganafortoseta events gia to event tab
+                document.querySelector('.filter-section').style.display = 'flex'; // δείξε φίλτρα για events
+                fetchEvents(); // ξαναφόρτωσε τα events για το event tab
             } else {
                 document.querySelector('.content h2').textContent = 'UNISTUDENT ' + e.target.dataset.category;
-                document.querySelector('.filter-section').style.display = 'none'; // kripse ta filtra gia ta ipolipa tabs
+                document.querySelector('.filter-section').style.display = 'none'; // κρύψε τα φίλτρα για τα υπόλοιπα tabs
                 eventList.innerHTML = `<p>Content for ${e.target.dataset.category} will be loaded here.</p>`;
             }
         });
     });
 
-    // event tab na fenettai em to pou fortoni 
+    // event tab να φαίνεται όταν φορτώνει 
     const eventsTab = document.querySelector('.tab-button[data-category="EVENTS"]');
     if (eventsTab) {
         eventsTab.classList.add('active');
